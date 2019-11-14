@@ -135,32 +135,43 @@ add_action( 'wp_enqueue_scripts', 'radio404_scripts' );
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+require 'inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require 'inc/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require 'inc/template-functions.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require 'inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+	require 'inc/jetpack.php';
 }
 
 /**
  * Internal SSL.
  */
-require get_template_directory() . '/inc/internal-ssl.php';
+require 'inc/internal-ssl.php';
+
+/**
+ * Custom posts & taxonomies
+ */
+require 'custom-taxonomies/genre.php';
+require 'custom-post-types/track.php';
+require 'custom-post-types/album.php';
+require 'custom-post-types/artist.php';
+require 'custom-post-types/label.php';
+require 'custom-post-types/podcast.php';
+
 
