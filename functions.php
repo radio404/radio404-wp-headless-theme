@@ -174,4 +174,8 @@ require 'custom-post-types/artist.php';
 require 'custom-post-types/label.php';
 require 'custom-post-types/podcast.php';
 
+/**
+ * ACF options page
+ */
 
+require 'inc/acf-options-page.php';
