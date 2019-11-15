@@ -9,6 +9,7 @@ if( function_exists('acf_add_options_page') ) {
 		'menu_title'	=> $page_title,
 		'menu_slug'     => $page_slug,
 		'slug'          => $page_slug,
+		'post_id'       => $page_slug,
 		'icon_url' => 'dashicons-admin-tools',
 	]);
 
