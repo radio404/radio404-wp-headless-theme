@@ -1,0 +1,13 @@
+.wp-list-table .column-cover {
+  width: 60px;
+  padding-right: 0; }
+
+.wp-list-table .column-album {
+  vertical-align: top; }
+
+.admin-list-cover {
+  width: 50px;
+  height: 50px;
+  vertical-align: text-top; }
+
+/*# sourceMappingURL=admin.css.map */

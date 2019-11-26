@@ -167,6 +167,7 @@ require 'inc/internal-ssl.php';
 /**
  * Custom posts & taxonomies
  */
+require 'inc/utils.php';
 require 'custom-taxonomies/genre.php';
 require 'custom-post-types/track.php';
 require 'custom-post-types/album.php';
@@ -179,3 +180,15 @@ require 'custom-post-types/podcast.php';
  */
 
 require 'inc/acf-options-page.php';
+
+/**
+ * Admin
+ */
+
+function admin_css() {
+	$admin_handle = 'admin_css';
+	$admin_stylesheet = get_template_directory_uri() . '/admin.css';
+
+	wp_enqueue_style($admin_handle, $admin_stylesheet);
+}
+add_action('admin_print_styles', 'admin_css', 11);

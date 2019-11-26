@@ -36,7 +36,7 @@ function custom_post_type_track() {
 		'label'                 => __( 'Label', 'radio404' ),
 		'description'           => __( 'Labels', 'radio404' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
+		'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'custom-fields' ),
 		'taxonomies'            => array( 'genre' ),
 		'hierarchical'          => false,
 		'public'                => true,
@@ -57,3 +57,59 @@ function custom_post_type_track() {
 
 }
 add_action( 'init', 'custom_post_type_track', 0 );
+
+
+// Add the custom columns to the book post type:
+add_filter( 'manage_track_posts_columns', 'set_custom_edit_track_columns' );
+function set_custom_edit_track_columns($columns) {
+	//unset( $columns['taxonomy-genre'] );
+	//unset( $columns['date'] );
+	$columns['author'] = __('Géré par','radio404');
+	$columns['album'] = __( 'Album', 'radio404' );
+	$columns['artist'] = __( 'Artiste', 'radio404' );
+
+	return $columns;
+}
+
+// Add the data to the custom columns for the book post type:
+add_action( 'manage_track_posts_custom_column' , 'custom_track_column', 10, 2 );
+function custom_track_column( $column, $post_id ) {
+	switch ( $column ) {
+		case 'cover':
+			break;
+		case 'artist' :
+			$column_post_id = get_post_meta( $post_id , $column , true );
+			echo $column_post_id ? get_the_title($column_post_id) : '-';
+			break;
+		case 'album' :
+			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
+			$column_post_id = get_post_meta( $post_id , $column , true );
+			echo ' ';
+			echo $column_post_id ? get_the_title($column_post_id) : '-';
+			break;
+	}
+}
+
+/*
+add authors menu filter to admin post list for custom post type
+*/
+function restrict_manage_authors() {
+	if (isset($_GET['post_type']) && post_type_exists($_GET['post_type']) && in_array(strtolower($_GET['post_type']), array('track', 'track_2'))) {
+		wp_dropdown_users(array(
+			'show_option_all'   => __('Afficher tous'),
+			'show_option_none'  => false,
+			'name'          => 'author',
+			'selected'      => !empty($_GET['author']) ? $_GET['author'] : 0,
+			'include_selected'  => false
+		));
+	}
+}
+add_action('restrict_manage_posts', 'restrict_manage_authors');
+
+/*
+function custom_columns_author($columns) {
+	$columns['author'] = 'Author';
+	return $columns;
+}
+add_filter('manage_edit-track_columns', 'custom_columns_author');
+*/

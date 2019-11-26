@@ -36,7 +36,7 @@ function custom_post_type_label() {
 		'label'                 => __( 'Label', 'radio404' ),
 		'description'           => __( 'Labels', 'radio404' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
+		'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'custom-fields' ),
 		'taxonomies'            => array( 'genre' ),
 		'hierarchical'          => false,
 		'public'                => true,

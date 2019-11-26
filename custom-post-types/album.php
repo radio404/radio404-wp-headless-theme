@@ -36,7 +36,7 @@ function custom_post_type_album() {
 		'label'                 => __( 'Album', 'radio404' ),
 		'description'           => __( 'Albums, groupes, musiciens', 'radio404' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'custom-fields' ),
+		'supports'              => array( 'title', 'editor', 'author', 'excerpt', 'thumbnail', 'revisions', 'custom-fields' ),
 		'taxonomies'            => array( 'genre' ),
 		'hierarchical'          => false,
 		'public'                => true,
@@ -57,3 +57,36 @@ function custom_post_type_album() {
 
 }
 add_action( 'init', 'custom_post_type_album', 0 );
+
+
+// Add the custom columns to the book post type:
+add_filter( 'manage_album_posts_columns', 'set_custom_edit_album_columns' );
+function set_custom_edit_album_columns($columns) {
+	//unset( $columns['taxonomy-genre'] );
+	//unset( $columns['date'] );
+	$columns['author'] = __('Géré par','radio404');
+	$columns['artist'] = __( 'Artiste', 'radio404' );
+	$columns['release_year'] = __( 'Année', 'radio404' );
+
+	return array_merge(array_slice($columns,0,1),[
+		'cover' => __('Pochette', 'radio404')
+	],array_slice($columns,1));
+}
+
+// Add the data to the custom columns for the book post type:
+add_action( 'manage_album_posts_custom_column' , 'custom_album_column', 10, 2 );
+function custom_album_column( $column, $post_id ) {
+	switch ( $column ) {
+		case 'cover':
+			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
+			break;
+		case 'artist' :
+			$artist = get_post_meta( $post_id , 'artist' , true );
+			echo $artist ?? '-';
+			break;
+		case 'release_year' :
+			$meta_value = get_post_meta( $post_id , $column , true );
+			echo $meta_value;
+			break;
+	}
+}

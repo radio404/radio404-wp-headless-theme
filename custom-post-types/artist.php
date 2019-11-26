@@ -36,7 +36,7 @@ function custom_post_type_artist() {
 		'label'                 => __( 'Artiste', 'radio404' ),
 		'description'           => __( 'Artistes, groupes, musiciens', 'radio404' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'custom-fields' ),
+		'supports'              => array( 'title', 'editor', 'author', 'excerpt', 'thumbnail', 'revisions', 'custom-fields' ),
 		'taxonomies'            => array( 'genre' ),
 		'hierarchical'          => false,
 		'public'                => true,
@@ -57,3 +57,20 @@ function custom_post_type_artist() {
 
 }
 add_action( 'init', 'custom_post_type_artist', 0 );
+
+// Add the custom columns to the book post type:
+add_filter( 'manage_artist_posts_columns', 'set_custom_edit_artist_columns' );
+function set_custom_edit_artist_columns($columns) {
+	unset( $columns['taxonomy-genre'] );
+	unset( $columns['author'] );
+	unset( $columns['date'] );
+
+	return $columns;
+}
+
+// Add the data to the custom columns for the book post type:
+add_action( 'manage_artist_posts_custom_column' , 'custom_artist_column', 10, 2 );
+function custom_artist_column( $column, $post_id ) {
+	switch ( $column ) {
+	}
+}

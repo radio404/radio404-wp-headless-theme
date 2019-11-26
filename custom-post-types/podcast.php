@@ -36,7 +36,7 @@ function custom_post_type_podcast() {
 		'label'                 => __( 'Podcast', 'radio404' ),
 		'description'           => __( 'Podcasts', 'radio404' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
+		'supports'              => array( 'title', 'editor', 'author', 'thumbnail', 'revisions', 'custom-fields' ),
 		'taxonomies'            => array( 'category', 'post_tag' ),
 		'hierarchical'          => false,
 		'public'                => true,
