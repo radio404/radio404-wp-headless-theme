@@ -61,25 +61,33 @@ function get_cover_by_id( $idtrack )
 
 }
 
-function get_cover_by_album( $id_album, $cover = '' )
+function get_cover_by_album( $album = '', $artist = '', $cover = '' )
 {
 
-	if(!$id_album) return false;
+	if(!$album) return false;
 	// grab page - polylang will take take or language selection ##
 	$args = array(
 		'post_status'       => 'any',
 		'meta_query'        => array(
 			'relation'      => 'OR',
 			[
-				'key'       => 'id_album',
-				'value'     => "$id_album",
+				'key'       => 'cover',
+				'value'     => "$cover",
 				'compare' => 'LIKE',
 			],
 			'relation'      => 'OR',
 			[
-				'key'       => 'cover',
-				'value'     => "$cover",
-				'compare' => 'LIKE',
+				[
+					'key'       => 'album',
+					'value'     => "$album",
+					'compare' => 'LIKE',
+				],
+				'relation'      => 'AND',
+				[
+					'key'       => 'artist',
+					'value'     => "$artist",
+					'compare' => 'LIKE',
+				],
 			]
 		),
 		'post_type'         => 'attachment',

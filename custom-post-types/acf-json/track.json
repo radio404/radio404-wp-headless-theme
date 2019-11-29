@@ -221,6 +221,44 @@
                 "display_format": "d\/m\/Y g:i a",
                 "return_format": "Y-m-dTH:i:sP",
                 "first_day": 1
+            },
+            {
+                "key": "field_artist_literal",
+                "label": "Artiste (littéral)",
+                "name": "artist_literal",
+                "type": "text",
+                "instructions": "champ littéral",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_album_literal",
+                "label": "Album (littéral)",
+                "name": "album_literal",
+                "type": "text",
+                "instructions": "champ littéral",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
             }
         ],
         "location": [
