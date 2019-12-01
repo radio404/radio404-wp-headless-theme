@@ -118,7 +118,7 @@ function get_album_by_title_and_artist( $title, $artist)
 		'title'        => $title,
 		'meta_query'        => array(
 			array(
-				'key'       => 'artist',
+				'key'       => 'artist_literal',
 				'value'     => "$artist"
 			)
 		),
