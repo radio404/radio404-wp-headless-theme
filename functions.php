@@ -79,6 +79,12 @@ if ( ! function_exists( 'radio404_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		function example_admin_bar_remove_logo() {
+			global $wp_admin_bar;
+			$wp_admin_bar->remove_menu( 'wp-logo' );
+		}
+		add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
 	}
 endif;
 add_action( 'after_setup_theme', 'radio404_setup' );
