@@ -175,11 +175,12 @@ require 'inc/internal-ssl.php';
  */
 require 'inc/utils.php';
 require 'custom-taxonomies/genre.php';
-require 'custom-post-types/track.php';
-require 'custom-post-types/album.php';
+require 'custom-post-types/schedule.php';
+require 'custom-post-types/podcast.php';
 require 'custom-post-types/artist.php';
 require 'custom-post-types/label.php';
-require 'custom-post-types/podcast.php';
+require 'custom-post-types/track.php';
+require 'custom-post-types/album.php';
 
 /**
  * ACF options page
