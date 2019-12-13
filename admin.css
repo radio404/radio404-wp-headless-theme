@@ -67,4 +67,8 @@
 .dashicons-radio404:before {
   content: "🏁"; }
 
+.editor-post-title__block .editor-post-title__input,
+.editor-styles-wrapper {
+  font-family: "Inter var" !important; }
+
 /*# sourceMappingURL=admin.css.map */

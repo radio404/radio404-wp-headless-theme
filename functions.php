@@ -192,9 +192,16 @@ require 'inc/acf-options-page.php';
  */
 
 function admin_css() {
+	//echo "<pre>";
+	//var_dump(wp_styles());
+	//die();
 	$admin_handle = 'admin_css';
 	$admin_stylesheet = get_template_directory_uri() . '/admin.css';
 
 	wp_enqueue_style($admin_handle, $admin_stylesheet);
+
+	$inter_stylesheet = get_template_directory_uri() . '/fonts/Inter/inter.css';
+	wp_enqueue_style('inter_font_css', $inter_stylesheet,['wp-block-editor']);
+
 }
 add_action('admin_print_styles', 'admin_css', 11);

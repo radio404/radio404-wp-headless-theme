@@ -1,6 +1,8 @@
 $icomoon-font-path:"fonts/radio404/fonts";
 @import "../fonts/radio404/style";
 
+$inter: 'Inter var';
+
 .wp-list-table .column-cover{
   width:60px;
   padding-right:0;
@@ -37,4 +39,9 @@ $icomoon-font-path:"fonts/radio404/fonts";
       content:$i404-radio404;
     }
   }
+}
+
+.editor-post-title__block .editor-post-title__input,
+.editor-styles-wrapper{
+  font-family: $inter !important;
 }
