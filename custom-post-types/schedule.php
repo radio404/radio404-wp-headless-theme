@@ -57,35 +57,3 @@ function custom_post_type_schedule() {
 
 }
 add_action( 'init', 'custom_post_type_schedule', 0 );
-
-
-// Add the custom columns to the book post type:
-add_filter( 'manage_schedule_posts_columns', 'set_custom_edit_schedule_columns' );
-function set_custom_edit_schedule_columns($columns) {
-	//unset( $columns['taxonomy-genre'] );
-	//unset( $columns['date'] );
-	$columns['author'] = __('Géré par','radio404');
-	$columns['album'] = __( 'Album', 'radio404' );
-	$columns['artist'] = __( 'Artiste', 'radio404' );
-
-	return $columns;
-}
-
-// Add the data to the custom columns for the book post type:
-add_action( 'manage_schedule_posts_custom_column' , 'custom_schedule_column', 10, 2 );
-function custom_schedule_column( $column, $post_id ) {
-	switch ( $column ) {
-		case 'cover':
-			break;
-		case 'artist' :
-			$column_post_id = get_post_meta( $post_id , $column , true );
-			echo $column_post_id ? get_the_title($column_post_id) : '-';
-			break;
-		case 'album' :
-			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
-			$column_post_id = get_post_meta( $post_id , $column , true );
-			echo ' ';
-			echo $column_post_id ? get_the_title($column_post_id) : '-';
-			break;
-	}
-}
