@@ -140,6 +140,31 @@ function get_album_by_title_and_artist( $title, $artist)
 	return $posts[0];
 
 }
+function get_podcast_by_title( $title)
+{
+
+	// grab page - polylang will take take or language selection ##
+	$args = array(
+		'post_status'       => 'any',
+		'title'        => $title,
+		'post_type'         => 'podcast',
+		'posts_per_page'    => '1'
+	);
+
+	// run query ##
+	$query = new WP_Query($args);
+	$posts = $query->posts;
+
+	// check results ##
+	if ( ! $posts || is_wp_error( $posts ) ) return false;
+
+	// test it ##
+	#pr( $posts[0] );
+
+	// kick back results ##
+	return $posts[0];
+
+}
 function get_artist_by_name( $name )
 {
 

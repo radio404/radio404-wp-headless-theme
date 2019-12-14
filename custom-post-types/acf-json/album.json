@@ -296,6 +296,13 @@
                     "operator": "==",
                     "value": "album"
                 }
+            ],
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "podcast"
+                }
             ]
         ],
         "menu_order": 0,
