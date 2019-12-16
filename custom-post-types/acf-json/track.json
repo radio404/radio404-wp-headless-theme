@@ -69,6 +69,31 @@
                 "ui": 1
             },
             {
+                "key": "field_album_post_type",
+                "label": "Typologie",
+                "name": "album_post_type",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "podcast": "Podcast",
+                    "playlist": "Playlist"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
                 "key": "field_tracklength_seconds",
                 "label": "Durée en seconde (totale)",
                 "name": "tracklength_seconds",
