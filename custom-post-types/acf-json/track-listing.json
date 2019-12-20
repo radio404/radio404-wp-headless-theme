@@ -99,6 +99,13 @@
                     "operator": "==",
                     "value": "podcast"
                 }
+            ],
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "schedule"
+                }
             ]
         ],
         "menu_order": 0,

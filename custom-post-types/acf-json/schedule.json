@@ -4,6 +4,45 @@
     "title": "Programmation",
     "fields": [
       {
+        "key": "field_type",
+        "label": "Typologie",
+        "name": "type",
+        "type": "select",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50%",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "podcast": "Podcast",
+          "playlist": "Playlist"
+        },
+        "default_value": [],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "return_format": "value",
+        "ajax": 0,
+        "placeholder": ""
+      },
+      {
+        "key": "field_idschedule",
+        "label": "idschedule",
+        "name": "idschedule",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50%",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
         "key": "field_start",
         "label": "Début",
         "name": "start",
@@ -12,7 +51,7 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "",
+          "width": "50%",
           "class": "",
           "id": ""
         },
@@ -29,7 +68,7 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "",
+          "width": "50%",
           "class": "",
           "id": ""
         },
@@ -38,29 +77,39 @@
         "first_day": 1
       },
       {
-        "key": "field_type",
-        "label": "Typologie",
-        "name": "type",
-        "type": "select",
+        "key": "field_duration_literal",
+        "label": "Durée litérale",
+        "name": "duration_literal",
+        "type": "text",
         "instructions": "",
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "",
+          "width": "50%",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_duration_seconds",
+        "label": "Durée en secondes",
+        "name": "duration_seconds",
+        "type": "number",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50%",
           "class": "",
           "id": ""
         },
-        "choices": {
-          "podcast": "Podcast",
-          "playlist": "Playlist"
-        },
-        "default_value": [],
-        "allow_null": 0,
-        "multiple": 0,
-        "ui": 0,
-        "return_format": "value",
-        "ajax": 0,
-        "placeholder": ""
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "min": "",
+        "max": "",
+        "step": "1"
       },
       {
         "key": "field_podcast",
@@ -79,7 +128,7 @@
           ]
         ],
         "wrapper": {
-          "width": "",
+          "width": "50%",
           "class": "",
           "id": ""
         },
@@ -108,7 +157,7 @@
           ]
         ],
         "wrapper": {
-          "width": "",
+          "width": "50%",
           "class": "",
           "id": ""
         },

@@ -60,6 +60,36 @@ function get_cover_by_id( $idtrack )
 	return $posts[0];
 
 }
+function get_schedule_by_id( $idschedule )
+{
+
+	// grab page - polylang will take take or language selection ##
+	$args = array(
+		'post_status'       => 'any',
+		'meta_query'        => array(
+			array(
+				'key'       => 'idschedule',
+				'value'     => "$idschedule"
+			)
+		),
+		'post_type'         => 'schedule',
+		'posts_per_page'    => '1'
+	);
+
+	// run query ##
+	$query = new WP_Query($args);
+	$posts = $query->posts;
+
+	// check results ##
+	if ( ! $posts || is_wp_error( $posts ) ) return false;
+
+	// test it ##
+	#pr( $posts[0] );
+
+	// kick back results ##
+	return $posts[0];
+
+}
 
 function get_cover_by_album( $album = '', $artist = '', $cover = '' )
 {
