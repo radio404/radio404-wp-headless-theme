@@ -48,8 +48,13 @@ $inter: 'Inter var';
 .editor-styles-wrapper{
   p{
     em{
+      font-weight: 500;
       font-style: normal;
-      font-weight:300;
+      background: #ccc;
+      font-variant: small-caps;
+      text-transform: lowercase;
+      font-size: 1.1em;
+      line-height: 0.9em;
     }
   }
 }
