@@ -71,4 +71,8 @@
 .editor-styles-wrapper {
   font-family: "Inter var" !important; }
 
+.editor-styles-wrapper p em {
+  font-style: normal;
+  font-weight: 300; }
+
 /*# sourceMappingURL=admin.css.map */

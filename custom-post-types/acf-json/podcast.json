@@ -12,7 +12,7 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
@@ -31,7 +31,7 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
@@ -46,16 +46,16 @@
                 "label": "Twitter",
                 "name": "twitter",
                 "type": "text",
-                "instructions": "Support des @___ et #___",
+                "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
                 "default_value": "",
-                "placeholder": "",
+                "placeholder": "Support des @___ et #___",
                 "prepend": "",
                 "append": "",
                 "maxlength": ""
@@ -69,7 +69,7 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
@@ -88,7 +88,7 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
@@ -107,13 +107,13 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
                 "default_value": "",
                 "placeholder": "",
-                "prepend": "",
+                "prepend": "@",
                 "append": "",
                 "maxlength": ""
             },
@@ -126,7 +126,7 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
@@ -145,7 +145,7 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
@@ -164,7 +164,7 @@
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50%",
+                    "width": "50",
                     "class": "",
                     "id": ""
                 },
@@ -185,7 +185,7 @@
             ]
         ],
         "menu_order": 0,
-        "position": "side",
+        "position": "normal",
         "style": "default",
         "label_placement": "top",
         "instruction_placement": "label",

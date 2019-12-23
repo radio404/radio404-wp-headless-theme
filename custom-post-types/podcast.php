@@ -57,3 +57,24 @@ function custom_post_type_podcast() {
 
 }
 add_action( 'init', 'custom_post_type_podcast', 0 );
+
+// Add the custom columns to the book post type:
+add_filter( 'manage_podcast_posts_columns', 'set_custom_edit_podcast_columns' );
+function set_custom_edit_podcast_columns($columns) {
+	$columns['artist_literal'] = __( 'Artiste', 'radio404' );
+	return array_merge(array_slice($columns,0,1),[
+		'cover' => __('Pochette', 'radio404')
+	],array_slice($columns,1));}
+
+// Add the data to the custom columns for the book post type:
+add_action( 'manage_podcast_posts_custom_column' , 'custom_podcast_column', 10, 2 );
+function custom_podcast_column( $column, $post_id ) {
+	switch ( $column ) {
+		case 'cover':
+			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
+			break;
+		case 'artist_literal' :
+			echo get_post_meta( $post_id , $column, true );
+			break;
+	}
+}

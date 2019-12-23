@@ -4,10 +4,10 @@
         "title": "Morceau",
         "fields": [
             {
-                "key": "field_artist_list",
-                "label": "Artiste",
-                "name": "artist_list",
-                "type": "repeater",
+                "key": "field_artist",
+                "label": "Artiste(s)",
+                "name": "artist",
+                "type": "post_object",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -16,35 +16,14 @@
                     "class": "",
                     "id": ""
                 },
-                "collapsed": "field_artist",
-                "min": 0,
-                "max": 0,
-                "layout": "table",
-                "button_label": "",
-                "sub_fields": [
-                    {
-                        "key": "field_artist",
-                        "label": "Artiste",
-                        "name": "artist",
-                        "type": "post_object",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "post_type": [
-                            "artist"
-                        ],
-                        "taxonomy": "",
-                        "allow_null": 0,
-                        "multiple": 0,
-                        "return_format": "object",
-                        "ui": 1
-                    }
-                ]
+                "post_type": [
+                    "artist"
+                ],
+                "taxonomy": "",
+                "allow_null": 0,
+                "multiple": 1,
+                "return_format": "object",
+                "ui": 1
             },
             {
                 "key": "field_album",
@@ -284,6 +263,25 @@
                 "prepend": "",
                 "append": "",
                 "maxlength": ""
+            },
+            {
+                "key": "field_no_sync",
+                "label": "Ne plus synchroniser",
+                "name": "no_sync",
+                "type": "true_false",
+                "instructions": "Si la case est coché, les méta-données ne seront plus synchronisées avec RadioKing",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
             }
         ],
         "location": [

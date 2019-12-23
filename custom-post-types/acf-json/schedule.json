@@ -12,7 +12,7 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "50%",
+          "width": "25",
           "class": "",
           "id": ""
         },
@@ -37,10 +37,29 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "50%",
+          "width": "25",
           "class": "",
           "id": ""
         }
+      },
+      {
+        "key": "field_no_sync",
+        "label": "Ne plus synchroniser",
+        "name": "no_sync",
+        "type": "true_false",
+        "instructions": "Si la case est coché, les méta-données ne seront plus synchronisées avec RadioKing",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0,
+        "ui": 0,
+        "ui_on_text": "",
+        "ui_off_text": ""
       },
       {
         "key": "field_start",
@@ -51,7 +70,7 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "50%",
+          "width": "25",
           "class": "",
           "id": ""
         },
@@ -68,7 +87,7 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "50%",
+          "width": "25",
           "class": "",
           "id": ""
         },
@@ -85,7 +104,7 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "50%",
+          "width": "25",
           "class": "",
           "id": ""
         }
@@ -99,7 +118,7 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "50%",
+          "width": "25",
           "class": "",
           "id": ""
         },
@@ -128,7 +147,7 @@
           ]
         ],
         "wrapper": {
-          "width": "50%",
+          "width": "50",
           "class": "",
           "id": ""
         },
@@ -151,13 +170,13 @@
         "conditional_logic": [
           [
             {
-              "field": "field_podcast",
+              "field": "field_type",
               "operator": "!=empty"
             }
           ]
         ],
         "wrapper": {
-          "width": "50%",
+          "width": "50",
           "class": "",
           "id": ""
         },

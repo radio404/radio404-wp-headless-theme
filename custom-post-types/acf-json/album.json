@@ -1,13 +1,13 @@
 [
     {
         "key": "group_album",
-        "title": "Album",
+        "title": "Compilation",
         "fields": [
             {
-                "key": "field_artist_list",
-                "label": "Artiste",
-                "name": "artist_list",
-                "type": "repeater",
+                "key": "field_artist",
+                "label": "Artiste(s)",
+                "name": "artist",
+                "type": "post_object",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -16,35 +16,14 @@
                     "class": "",
                     "id": ""
                 },
-                "collapsed": "field_artist",
-                "min": 0,
-                "max": 0,
-                "layout": "table",
-                "button_label": "",
-                "sub_fields": [
-                    {
-                        "key": "field_artist",
-                        "label": "Artiste",
-                        "name": "artist",
-                        "type": "post_object",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "post_type": [
-                            "artist"
-                        ],
-                        "taxonomy": "",
-                        "allow_null": 0,
-                        "multiple": 0,
-                        "return_format": "object",
-                        "ui": 1
-                    }
-                ]
+                "post_type": [
+                    "artist"
+                ],
+                "taxonomy": "",
+                "allow_null": 0,
+                "multiple": 1,
+                "return_format": "object",
+                "ui": 1
             },
             {
                 "key": "field_length_seconds",
@@ -140,6 +119,25 @@
                 "prepend": "",
                 "append": "",
                 "maxlength": ""
+            },
+            {
+                "key": "field_no_sync",
+                "label": "Ne plus synchroniser",
+                "name": "no_sync",
+                "type": "true_false",
+                "instructions": "Si la case est coché, les méta-données ne seront plus synchronisées avec RadioKing",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 0,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
             }
         ],
         "location": [
@@ -148,6 +146,12 @@
                     "param": "post_type",
                     "operator": "==",
                     "value": "album"
+                }
+            ],[
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "podcast"
                 }
             ]
         ],
@@ -158,160 +162,6 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
-    },
-    {
-        "key": "group_track_listing",
-        "title": "Track listing",
-        "fields": [
-            {
-                "key": "field_track_listing",
-                "label": "Morceaux",
-                "name": "track_listing",
-                "type": "repeater",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "collapsed": "",
-                "min": 0,
-                "max": 0,
-                "layout": "table",
-                "button_label": "",
-                "sub_fields": [
-                    {
-                        "key": "field_use_track",
-                        "label": "Utiliser un morceau",
-                        "name": "use_track",
-                        "type": "true_false",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "message": "",
-                        "default_value": 0,
-                        "ui": 0,
-                        "ui_on_text": "",
-                        "ui_off_text": ""
-                    },
-                    {
-                        "key": "field_track",
-                        "label": "Morceau",
-                        "name": "track",
-                        "type": "post_object",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": [
-                            [
-                                {
-                                    "field": "field_use_track",
-                                    "operator": "==",
-                                    "value": "1"
-                                }
-                            ]
-                        ],
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "post_type": [
-                            "track"
-                        ],
-                        "taxonomy": "",
-                        "allow_null": 0,
-                        "multiple": 0,
-                        "return_format": "id",
-                        "ui": 1
-                    },
-                    {
-                        "key": "field_title",
-                        "label": "Titre",
-                        "name": "title",
-                        "type": "text",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": [
-                            [
-                                {
-                                    "field": "field_use_track",
-                                    "operator": "!=",
-                                    "value": "1"
-                                }
-                            ]
-                        ],
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "maxlength": ""
-                    },
-                    {
-                        "key": "field_tracklength_string",
-                        "label": "Durée textuelle",
-                        "name": "tracklength_string",
-                        "type": "text",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": [
-                            [
-                                {
-                                    "field": "field_use_track",
-                                    "operator": "!=",
-                                    "value": "1"
-                                }
-                            ]
-                        ],
-                        "wrapper": {
-                            "width": "20",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "maxlength": ""
-                    }
-                ]
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "album"
-                }
-            ],
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "podcast"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": true,
-        "description": ""
+        "description": "Album et Podcast"
     }
 ]

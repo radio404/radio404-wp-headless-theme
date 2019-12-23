@@ -45,3 +45,11 @@ $inter: 'Inter var';
 .editor-styles-wrapper{
   font-family: $inter !important;
 }
+.editor-styles-wrapper{
+  p{
+    em{
+      font-style: normal;
+      font-weight:300;
+    }
+  }
+}

@@ -65,6 +65,7 @@ function set_custom_edit_track_columns($columns) {
 	//unset( $columns['taxonomy-genre'] );
 	//unset( $columns['date'] );
 	$columns['author'] = __('Géré par','radio404');
+	$columns['album_post_type'] = __( 'Type', 'radio404' );
 	$columns['album'] = __( 'Album', 'radio404' );
 	$columns['artist'] = __( 'Artiste', 'radio404' );
 
@@ -75,6 +76,10 @@ function set_custom_edit_track_columns($columns) {
 add_action( 'manage_track_posts_custom_column' , 'custom_track_column', 10, 2 );
 function custom_track_column( $column, $post_id ) {
 	switch ( $column ) {
+		case 'album_post_type':
+			$column_value = get_post_meta( $post_id , $column , true );
+			echo $column_value;
+			break;
 		case 'cover':
 			break;
 		case 'artist' :
