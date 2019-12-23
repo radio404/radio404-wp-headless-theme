@@ -81,8 +81,11 @@ function custom_album_column( $column, $post_id ) {
 			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
 			break;
 		case 'artist' :
-			$artist = get_post_meta( $post_id , 'artist' , true );
-			echo $artist ?? '-';
+			foreach(get_post_meta( $post_id , $column, true ) as $artist_id){
+				$artist_edit_link = get_edit_post_link($artist_id);
+				$artist_name = get_the_title($artist_id);
+				echo "<a href='$artist_edit_link'>$artist_name</a>";
+			}
 			break;
 		case 'release_year' :
 			$meta_value = get_post_meta( $post_id , $column , true );

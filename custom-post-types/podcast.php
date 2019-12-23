@@ -61,7 +61,7 @@ add_action( 'init', 'custom_post_type_podcast', 0 );
 // Add the custom columns to the book post type:
 add_filter( 'manage_podcast_posts_columns', 'set_custom_edit_podcast_columns' );
 function set_custom_edit_podcast_columns($columns) {
-	$columns['artist_literal'] = __( 'Artiste', 'radio404' );
+	$columns['artist'] = __( 'Artiste', 'radio404' );
 	return array_merge(array_slice($columns,0,1),[
 		'cover' => __('Pochette', 'radio404')
 	],array_slice($columns,1));}
@@ -73,8 +73,12 @@ function custom_podcast_column( $column, $post_id ) {
 		case 'cover':
 			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
 			break;
-		case 'artist_literal' :
-			echo get_post_meta( $post_id , $column, true );
+		case 'artist' :
+			foreach(get_post_meta( $post_id , $column, true ) as $artist_id){
+				$artist_edit_link = get_edit_post_link($artist_id);
+				$artist_name = get_the_title($artist_id);
+				echo "<a href='$artist_edit_link'>$artist_name</a>";
+			}
 			break;
 	}
 }
