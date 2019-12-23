@@ -74,11 +74,13 @@ function custom_podcast_column( $column, $post_id ) {
 			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
 			break;
 		case 'artist' :
+			$artists = [];
 			foreach(get_post_meta( $post_id , $column, true ) as $artist_id){
 				$artist_edit_link = get_edit_post_link($artist_id);
 				$artist_name = get_the_title($artist_id);
-				echo "<a href='$artist_edit_link'>$artist_name</a>";
+				$artists[] = "<a href='$artist_edit_link'>$artist_name</a>";
 			}
+			echo implode(', ',$artists);
 			break;
 	}
 }

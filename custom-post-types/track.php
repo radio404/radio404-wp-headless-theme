@@ -69,8 +69,9 @@ function set_custom_edit_track_columns($columns) {
 	$columns['album'] = __( 'Album', 'radio404' );
 	$columns['artist'] = __( 'Artiste', 'radio404' );
 
-	return $columns;
-}
+	return array_merge(array_slice($columns,0,1),[
+		'cover' => __('Pochette', 'radio404')
+	],array_slice($columns,1));}
 
 // Add the data to the custom columns for the book post type:
 add_action( 'manage_track_posts_custom_column' , 'custom_track_column', 10, 2 );
@@ -78,19 +79,25 @@ function custom_track_column( $column, $post_id ) {
 	switch ( $column ) {
 		case 'album_post_type':
 			$column_value = get_post_meta( $post_id , $column , true );
-			echo $column_value;
+			echo ucfirst($column_value);
 			break;
 		case 'cover':
+			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
 			break;
 		case 'artist' :
-			$column_post_id = get_post_meta( $post_id , $column , true );
-			echo $column_post_id ? get_the_title($column_post_id) : '-';
+			$artists = [];
+			foreach(get_post_meta( $post_id , $column, true ) as $artist_id){
+				$artist_edit_link = get_edit_post_link($artist_id);
+				$artist_name = get_the_title($artist_id);
+				$artists[] = "<a href='$artist_edit_link'>$artist_name</a>";
+			}
+			echo implode(', ',$artists);
 			break;
 		case 'album' :
-			the_post_thumbnail('thumbnail',['class'=>'admin-list-cover']);
 			$column_post_id = get_post_meta( $post_id , $column , true );
-			echo ' ';
-			echo $column_post_id ? get_the_title($column_post_id) : '-';
+			$album_title = get_the_title($column_post_id);
+			$edit_link = get_edit_post_link($column_post_id);
+			echo $column_post_id ? "<a href='$edit_link'>$album_title</a>" : "—";
 			break;
 	}
 }
@@ -99,9 +106,9 @@ function custom_track_column( $column, $post_id ) {
 add authors menu filter to admin post list for custom post type
 */
 function restrict_manage_authors() {
-	if (isset($_GET['post_type']) && post_type_exists($_GET['post_type']) && in_array(strtolower($_GET['post_type']), array('track', 'track_2'))) {
+	if (isset($_GET['post_type']) && post_type_exists($_GET['post_type']) && in_array(strtolower($_GET['post_type']), array('track'))) {
 		wp_dropdown_users(array(
-			'show_option_all'   => __('Afficher tous'),
+			'show_option_all'   => __('Tous les utilisateurs'),
 			'show_option_none'  => false,
 			'name'          => 'author',
 			'selected'      => !empty($_GET['author']) ? $_GET['author'] : 0,
@@ -110,6 +117,81 @@ function restrict_manage_authors() {
 	}
 }
 add_action('restrict_manage_posts', 'restrict_manage_authors');
+
+/**
+ * Add extra dropdowns to the List Tables
+ *
+ * @param required string $post_type    The Post Type that is being displayed
+ */
+add_action('restrict_manage_posts', 'add_tracks_extra_tablenav');
+function add_tracks_extra_tablenav($post_type){
+
+	global $wpdb;
+
+	/** Ensure this is the correct Post Type*/
+	if($post_type !== 'track')
+		return;
+
+	/** Grab the results from the DB */
+	$query = $wpdb->prepare('
+        SELECT DISTINCT pm.meta_value FROM %1$s pm
+        LEFT JOIN %2$s p ON p.ID = pm.post_id
+        WHERE pm.meta_key = "%3$s" 
+        AND p.post_status = "%4$s" 
+        AND p.post_type = "%5$s"
+        ORDER BY "%3$s"',
+		$wpdb->postmeta,
+		$wpdb->posts,
+		'album_post_type', // Your meta key - change as required
+		'publish',             // Post status - change as required
+		$post_type
+	);
+	$results = $wpdb->get_col($query);
+
+	/** Ensure there are options to show */
+	if(empty($results))
+		return;
+
+	// get selected option if there is one selected
+	if (isset( $_GET['album_post_type'] ) && $_GET['album_post_type'] != '') {
+		$selectedAlbumPostType = $_GET['album_post_type'];
+	} else {
+		$selectedAlbumPostType = -1;
+	}
+
+	/** Grab all of the options that should be shown */
+	$options[] = sprintf('<option value="-1">%1$s</option>', __('Tous les types', 'radio404'));
+	foreach($results as $result) :
+		if ($result == $selectedAlbumPostType) {
+			$selected = " selected";
+		}else{
+			$selected = '';
+		}
+		$options[] = sprintf('<option value="%1$s"'.$selected.'>%2$s</option>', esc_attr($result), $result);
+	endforeach;
+
+	/** Output the dropdown menu */
+	echo '<select class="" id="album_post_type" name="album_post_type">';
+	echo join("\n", $options);
+	echo '</select>';
+
+}
+
+add_filter( 'parse_query', 'admin_tracks_filter' );
+function admin_tracks_filter( $query )
+{
+	global $pagenow;
+
+	if($query->query['post_type'] !== 'track') return;
+
+	if ( is_admin() && $pagenow=='edit.php' && isset($_GET['album_post_type']) && $_GET['album_post_type'] != '') {
+		$query->query_vars['meta_key'] = 'album_post_type';
+		if (isset($_GET['album_post_type']) && $_GET['album_post_type'] != ''){
+			$query->query_vars['meta_value'] = $_GET['album_post_type'];
+		}
+		//var_dump($query->query_vars);die();
+	}
+}
 
 /*
 function custom_columns_author($columns) {
