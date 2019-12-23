@@ -156,11 +156,11 @@ function add_tracks_extra_tablenav($post_type){
 	if (isset( $_GET['album_post_type'] ) && $_GET['album_post_type'] != '') {
 		$selectedAlbumPostType = $_GET['album_post_type'];
 	} else {
-		$selectedAlbumPostType = -1;
+		$selectedAlbumPostType = '';
 	}
 
 	/** Grab all of the options that should be shown */
-	$options[] = sprintf('<option value="-1">%1$s</option>', __('Tous les types', 'radio404'));
+	$options[] = sprintf('<option value="">%1$s</option>', __('Tous les types', 'radio404'));
 	foreach($results as $result) :
 		if ($result == $selectedAlbumPostType) {
 			$selected = " selected";
