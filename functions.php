@@ -181,6 +181,7 @@ require 'custom-post-types/artist.php';
 require 'custom-post-types/label.php';
 require 'custom-post-types/track.php';
 require 'custom-post-types/album.php';
+require 'custom-post-types/nav_menu.php';
 
 /**
  * ACF options page
