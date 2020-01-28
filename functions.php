@@ -174,6 +174,7 @@ require 'inc/internal-ssl.php';
  * Custom posts & taxonomies
  */
 require 'inc/utils.php';
+require 'inc/acf-filters.php';
 require 'custom-taxonomies/genre.php';
 require 'custom-post-types/schedule.php';
 require 'custom-post-types/podcast.php';
