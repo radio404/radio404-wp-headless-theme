@@ -52,8 +52,17 @@ function custom_post_type_schedule() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
+		'rest_base'             => 'schedules',
 	);
 	register_post_type( 'schedule', $args );
 
 }
 add_action( 'init', 'custom_post_type_schedule', 0 );
+
+function rest_schedule_collection_params($query_params){
+	// list any schedule
+	$query_params['status']['default']='any';
+	return $query_params;
+}
+
+add_filter('rest_schedule_collection_params','rest_schedule_collection_params');

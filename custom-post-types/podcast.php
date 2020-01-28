@@ -52,6 +52,7 @@ function custom_post_type_podcast() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
+		'rest_base'             => 'podcasts',
 	);
 	register_post_type( 'podcast', $args );
 

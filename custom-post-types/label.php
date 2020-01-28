@@ -52,6 +52,7 @@ function custom_post_type_label() {
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 		'show_in_rest'          => true,
+		'rest_base'             => 'labels',
 	);
 	register_post_type( 'label', $args );
 
